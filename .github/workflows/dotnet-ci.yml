@@ -46,7 +46,7 @@ jobs:
               
       - name: Start Minikube
         run: |
-          minikube profile list || echo "No profiles found"
+          minikube profile list 
           minikube start --driver=docker --kubernetes-version=v1.34.0 --profile=minikube
   
   
