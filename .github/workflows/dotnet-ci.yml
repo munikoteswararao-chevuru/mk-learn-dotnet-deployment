@@ -38,8 +38,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/dotnet-hello:latest .
+          docker build -t ${{ secrets.DOCKERHUB_ID }}/dotnet-hello:latest .
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/dotnet-hello:latest
+          docker push ${{ secrets.DOCKERHUB_ID }}/dotnet-hello:latest
