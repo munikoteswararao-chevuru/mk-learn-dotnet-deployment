@@ -43,11 +43,12 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKERHUB_ID }}/dotnet-hello:latest
-            
-      # 6️⃣ Ensure Minikube is running
+              
       - name: Start Minikube
         run: |
-          minikube status
+          minikube profile list || echo "No profiles found"
+          minikube start --driver=docker --kubernetes-version=v1.34.0 --profile=minikube
+  
   
       # 7️⃣ Ensure kubectl points to minikube
       - name: Configure kubectl
