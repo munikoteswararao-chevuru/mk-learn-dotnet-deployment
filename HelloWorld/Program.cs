@@ -1,13 +1,10 @@
-using System;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 
-namespace HelloWorld
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World from .NET!");
-            await Task.Delay(-1);
-        }
-    }
-}
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World from .NET Web API running in Kubernetes!");
+
+app.Run();
+

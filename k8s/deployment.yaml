@@ -15,5 +15,7 @@ spec:
       containers:
       - name: helloworld
         image: muni87/dotnet-hello:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        args: ["--urls", "http://0.0.0.0:8080"]
