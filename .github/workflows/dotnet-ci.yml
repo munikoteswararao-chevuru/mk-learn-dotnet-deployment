@@ -63,11 +63,18 @@ jobs:
         run: |
           kubectl apply --validate=false -f k8s/deployment.yaml
           kubectl apply --validate=false -f k8s/service.yaml
-      - name: Port Forward to localhost
+          
+      # - name: Port Forward to localhost
+      #   run: |
+      #       # minikube tunnel
+      #       kubectl port-forward service/helloworld-service 8080:80
+            
+      - name: Show Service URL
+        shell: pwsh
         run: |
-            # minikube tunnel
-            kubectl port-forward service/helloworld-service 8080:80
-  
+          $url = minikube service helloworld-service --url
+          Write-Host "Access your app at: $url"
+
       # 9️⃣ Show pod status
       - name: Verify Deployment
         run: kubectl get pods -o wide
