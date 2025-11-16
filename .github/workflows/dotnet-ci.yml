@@ -47,7 +47,7 @@ jobs:
       # 6️⃣ Ensure Minikube is running
       - name: Start Minikube
         run: |
-          minikube status || minikube start
+          minikube status
   
       # 7️⃣ Ensure kubectl points to minikube
       - name: Configure kubectl
