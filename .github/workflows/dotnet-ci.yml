@@ -43,8 +43,24 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKERHUB_ID }}/dotnet-hello:latest
-          
-      - name: Deploy to Minikube
+            
+      # 6️⃣ Ensure Minikube is running
+      - name: Start Minikube
         run: |
-          kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/service.yaml
+          minikube status || minikube start
+  
+      # 7️⃣ Ensure kubectl points to minikube
+      - name: Configure kubectl
+        run: |
+          minikube kubectl -- config use-context minikube
+          kubectl get nodes
+  
+      # 8️⃣ Apply Kubernetes manifests (skip OpenAPI validation)
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply --validate=false -f k8s/deployment.yaml
+          kubectl apply --validate=false -f k8s/service.yaml
+  
+      # 9️⃣ Show pod status
+      - name: Verify Deployment
+        run: kubectl get pods -o wide
