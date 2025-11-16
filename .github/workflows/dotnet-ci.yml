@@ -64,7 +64,7 @@ jobs:
 
       # 6️⃣ Load Docker image into Kind
       - name: Load Docker image into Kind
-        run: kind load docker-image dotnet-hello:latest --name ci-cluster
+        run: kind load docker-image muni87/dotnet-hello:latest --name ci-cluster
   
         
       # # 7️⃣ Ensure kubectl points to minikube
