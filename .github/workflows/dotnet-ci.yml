@@ -70,7 +70,6 @@ jobs:
       #       kubectl port-forward service/helloworld-service 8080:80
             
       - name: Show Service URL
-        shell: pwsh
         run: |
           $url = minikube service helloworld-service --url
           Write-Host "Access your app at: $url"
