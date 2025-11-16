@@ -49,9 +49,9 @@ jobs:
       #     minikube profile list 
       #     minikube start --driver=docker --kubernetes-version=v1.34.0 --profile=minikube
 
-      - name: Port Forward to localhost
-        run: |
-          minikube tunnel
+      # - name: Port Forward to localhost
+      #   run: |
+      #     minikube tunnel
       # 7️⃣ Ensure kubectl points to minikube
       - name: Configure kubectl
         run: |
@@ -63,10 +63,10 @@ jobs:
         run: |
           kubectl apply --validate=false -f k8s/deployment.yaml
           kubectl apply --validate=false -f k8s/service.yaml
-      # - name: Port Forward to localhost
-      #   run: |
+      - name: Port Forward to localhost
+        run: |
             # minikube tunnel
-            # kubectl port-forward service/helloworld-service 8080:80
+            kubectl port-forward service/helloworld-service 8080:80
   
       # 9️⃣ Show pod status
       - name: Verify Deployment
