@@ -61,16 +61,16 @@ jobs:
           repository: munikoteswararao-chevuru/argocd-deployments
           ref: main
           token: ${{ secrets.GH_PAT }}
-          path: manifests
+          path: argocd
 
       - name: Update Deployment YAML with New Image
         run: |
-          cd manifests
-          sed -i "s|image:.*|image: ${{ secrets.ECR_REPO }}:${IMAGE_TAG}|" deployment.yaml
+          cd argocd
+          sed -i "s|image:.*|image: ${{ secrets.ECR_REPO }}:${IMAGE_TAG}|" manifests/deployment.yaml
   
       - name: Commit & Push Manifests
         run: |
-          cd manifests
+          cd argocd
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git commit -am "Update image to $IMAGE_TAG"
