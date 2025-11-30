@@ -65,8 +65,8 @@ jobs:
 
       - name: Update Deployment YAML with New Image
         run: |
-          cd argocd
-          sed -i "s|image:.*|image: ${{ secrets.ECR_REPO }}:${IMAGE_TAG}|" manifests/deployment.yaml
+          cd argocd/manifests
+          sed -i "s|image:.*|image: ${{ secrets.ECR_REPO }}:${IMAGE_TAG}|" deployment.yaml
   
       - name: Commit & Push Manifests
         run: |
